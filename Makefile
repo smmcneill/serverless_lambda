@@ -1,5 +1,5 @@
 build:
-	GOOS=linux GOARCH=amd64 go build -o bootstrap main.go
+	GOOS=linux GOARCH=amd64 go build -tags lambda.norpc -o bootstrap main.go
 
 run:
 	docker run --rm -p 9000:8080 -v ${PWD}:/var/runtime amazon/aws-lambda-provided bootstrap
