@@ -9,13 +9,7 @@ import (
 )
 
 func handleRequest(ctx context.Context, request events.ALBTargetGroupRequest) (events.ALBTargetGroupResponse, error) {
-	fmt.Printf("Processing request data for traceId %s.\n", request.Headers["x-amzn-trace-id"])
-	fmt.Printf("Body size = %d.\n", len(request.Body))
-
-	fmt.Println("Headers:")
-	for key, value := range request.Headers {
-		fmt.Printf("    %s: %s\n", key, value)
-	}
+	fmt.Printf("Request Details:\n%+v\n\n", request)
 
 	return events.ALBTargetGroupResponse{Body: request.Body, StatusCode: 200, StatusDescription: "200 OK", IsBase64Encoded: false, Headers: map[string]string{}}, nil
 }
