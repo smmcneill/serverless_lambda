@@ -1,8 +1,8 @@
 build:
-	GOOS=linux GOARCH=amd64 go build -o main main.go
+	GOOS=linux GOARCH=amd64 go build -o bootstrap main.go
 
 run:
-	docker run --rm -e LAMBDA_TASK_ROOT=/app -p 9000:8080 -v ${PWD}:/app amazon/aws-lambda-go main
+	docker run --rm -p 9000:8080 -v ${PWD}:/var/runtime amazon/aws-lambda-provided bootstrap
 
 call:
 	curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"payload":"hello world!"}'	
