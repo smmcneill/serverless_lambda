@@ -11,7 +11,13 @@ import (
 func handleRequest(ctx context.Context, request events.ALBTargetGroupRequest) (events.ALBTargetGroupResponse, error) {
 	fmt.Printf("Request Details:\n%+v\n\n", request)
 
-	return events.ALBTargetGroupResponse{Body: request.Body, StatusCode: 200, StatusDescription: "200 OK", IsBase64Encoded: false, Headers: map[string]string{}}, nil
+	return events.ALBTargetGroupResponse{
+		Body:              request.Body,
+		StatusCode:        200,
+		StatusDescription: "200 OK",
+		IsBase64Encoded:   false,
+		Headers:           map[string]string{},
+	}, nil
 }
 
 func main() {
